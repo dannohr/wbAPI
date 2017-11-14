@@ -1,0 +1,64 @@
+<h4><span ng-bind="customersDetails.id ? 'Edit Existing Customer' : 'Add New Customer'"></span></h4>
+
+
+<hr>
+<br>
+
+
+
+<div class="row">
+                <form class="col s12" ng-init="reset()" ng-submit="submitForm()">
+                        <div class="row">
+                    <div class="input-field col s12">
+                            <input id="name" type="text" ng-model="customersDetails.name" class="validate">
+                      <label for="name" class="active">Company</label>
+                </div>
+                    <div class="input-field col s12">
+                            <input id="address" type="text" class="validate" ng-model="address">
+                      <label for="address" class="active">Address</label>
+                </div>
+                  </div>
+                  
+                  <div class="row">
+                          <div class="input-field col s4">
+                      <input id="city" type="text" class="validate" ng-model="city">
+                      <label for="city" class="active">City</label>
+                </div>
+                 
+                <div class="input-field col s4">
+                      <input id="state" type="text" class="validate" ng-model="state">
+                      <label for="state" class="active">State</label>
+                </div>
+                  
+                    <div class="input-field col s4">
+                            <input id="zip" type="text" class="validate" ng-model="zip">
+                      <label for="zip" class="active">Zip</label>
+                </div>
+                </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                            <input id="phone" type="text" class="validate" ng-model="phone">
+                      <label for="phone" class="active">Phone</label>
+                </div>
+                  </div>
+                </div>
+                </form>
+              </div>
+
+
+
+<button ng-click="save(customersDetails.id,customersDetails.lock_version,customersDetails.name)" class="btn waves-effect waves-light">
+        <span ng-show="customersDetails.id"><i class="material-icons right">check</i>Update Existing</span>
+        <span ng-show="!customersDetails.id"><i class="material-icons right">save</i>Save New</span>
+</button>
+
+
+<a class="waves-effect waves-light btn" href="#/customer/customer"><i class="material-icons right">backspace</i>Back to all customers</a>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<p class = "small-text">Company ID: {{customersDetails.id}} <br>Lock Version: {{customersDetails.lock_version}}</p>

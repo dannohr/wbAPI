@@ -1,0 +1,62 @@
+<h4>Customer Search Page</h4>
+<hr>
+<br>
+
+<input type="text" name = "input" ng-model = "custsearch" placeholder = "Filter Customer List">
+
+<!-- <button ng-click ="getCustomers(custsearch)">Search</button> -->
+
+<button class="btn waves-effect waves-light" ng-click ="getCustomers(custsearch)">Filter Data via API
+        <i class="material-icons right">search</i>
+</button>
+
+<!-- <button ng-click ="getAllCustomers()">Refresh All Customers</button> -->
+
+
+<button class="btn waves-effect waves-light" ng-click ="getAllCustomers()">Refresh All From API
+        <i class="material-icons right">autorenew</i>
+</button>
+
+<button class="btn waves-effect waves-light" ui-sref="customerdetails()">Create New Customer
+        <i class="material-icons right">person</i>
+</button>
+
+
+<!-- <button ui-sref="customerdetails()">Create New Customer</button> -->
+
+<modal-dialog show='modalShown' width='500px' height='35%'>
+  <span class = "modal-message">The delete functionaly is not working due API limitations when hosting page locally.</span> <br>
+  <img src="assets/warning.png" alt="">
+</modal-dialog>
+
+<div class="customer-row">
+    
+    <table class = "customer-search-table">
+        <tr class = "customer-search-rows">
+            <th class = "customer-search-rows"></th>
+            <th class = "customer-search-rows"></th>
+            <th class = "customer-search-rows">Company</th>
+            <th class = "customer-search-rows">Address</th>
+            <th class = "customer-search-rows">City</th>
+            <th class = "customer-search-rows">Sate</th>
+            <th class = "customer-search-rows">Phone</th>
+            <th class = "customer-search-rows">ID</th>
+            <th class = "customer-search-rows">Lock Vers</th>
+
+        </tr>
+
+        <tr class = "customer-search-rows" ng-repeat="customer in customers | filter: {'name':  custsearch} | orderBy: 'name' ">
+            <td class = "customer-search-rows"><img src="assets/editicon.png" alt="" class = "edit-button" ui-sref="customerdetails({id: customer.id})"></td>
+            <td class = "customer-search-rows"><img src="assets/deleteicon.png" alt="" class = "edit-button" ng-click='toggleModal()'></td>
+            <td class = "customer-search-rows">{{ customer.name }}</td>
+            <td class = "customer-search-rows">{{ customer['main_location[street_address]'] }}</td>
+            <td class = "customer-search-rows">{{ customer['main_location[town]'] }}</td>
+            <td class = "customer-search-rows">{{ customer['main_location[county_province_state]'] }}</td>
+            <td class = "customer-search-rows">{{ customer['main_location[telephone]'] }}</td>
+            <td class = "customer-search-rows">{{ customer.id }}</td>
+            <td class = "customer-search-rows">{{ customer.lock_version }}</td>
+        </tr>
+    </table>
+    
+
+</div>
